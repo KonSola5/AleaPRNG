@@ -1,4 +1,4 @@
-import { Masher } from "./masher.js";
+import { Masher } from "./masher.ts";
 
 /**
  * A seedable pseudo-random number generator that can generate pseudo-random numbers with at least 32-bit precision.
@@ -27,6 +27,8 @@ export class AleaPRNG {
    * @param seeds Seeds used to initialize the generator.
    */
   private initialize(seeds: (string | number)[]): void {
+    this.s = [0, 0, 0];
+    this.c = 0;
     if (seeds.length === 0) seeds.push(Number(new Date()));
 
     let masher: Masher | null = new Masher();
